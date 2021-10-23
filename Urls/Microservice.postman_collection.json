@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "7a11f5cb-055b-4bb4-bf00-74d07cfd6526",
+		"name": "Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Limit-service",
+			"item": [
+				{
+					"name": "Get limit service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/limits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"limits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Currency-exchange",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/currency-exchange/from/USD/to/INR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"currency-exchange",
+								"from",
+								"USD",
+								"to",
+								"INR"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Currency-conversion-service",
+			"item": [
+				{
+					"name": "Get Currency conversion service",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"currency-conversion",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get currency conversion using feign",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8100",
+							"path": [
+								"currency-conversion-feign",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Api-gateway",
+			"item": [
+				{
+					"name": "Call-currency-exchange-via-api-gateway",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Call currency conversion via api gateway",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"CURRENCY-CONVERSION",
+								"currency-conversion",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "currency-conversion-fien-via-api-gateway",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"CURRENCY-CONVERSION",
+								"currency-conversion-feign",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "currency-exchange-via-api-gateway-routing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/currency-exchange/from/USD/to/INR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"currency-exchange",
+								"from",
+								"USD",
+								"to",
+								"INR"
+							]
+						},
+						"description": "In this api loadbalancer will switches the load from one instance to another\nFlow Api-gateway--> Currency-exchange"
+					},
+					"response": []
+				},
+				{
+					"name": "Api-gateway->currency-conversion->currency-exchange-via-routing(Rest template)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"currency-conversion",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-gateway->currency-conversion->currency-exchange->via-routing & Fien client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"currency-conversion-feign",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Api-gateway->currency-conversion->currency-exchange->via-routing(modified one) & Fien client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8765",
+							"path": [
+								"currency-conversion-new",
+								"from",
+								"USD",
+								"to",
+								"INR",
+								"quantity",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
